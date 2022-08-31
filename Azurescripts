@@ -1,0 +1,24 @@
+#Setup an NSG
+# define variables for nsg rule
+name=AllowRDP
+nsgName=nsg-name
+priority=200
+rgroup=nsg-rg
+access=Allow
+description="What does it do"
+destPort=3389
+direction=Inbound
+protocol=TCP
+sourceAddress=TRUSTED-IP-ADDRESS/32
+
+az network nsg rule create \
+--name $name \
+--nsg-name $nsgName \
+--priority $priority \
+--resource-group $rgroup \
+--access $access \
+--description "$description" \
+--destination-port-ranges $destPort \
+--direction $direction \
+--protocol $protocol \
+--source-address-prefixes $sourceAddress 
